@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraMovementScript : MonoBehaviour
 {
@@ -231,7 +229,7 @@ public class CameraMovementScript : MonoBehaviour
     {
         float distanceToGround = DistanceToGround();
         if (useScrollwheelZooming)
-            zoomPos += -ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
+            zoomPos += ScrollWheel * Time.deltaTime * scrollWheelZoomingSensitivity;
         if (useKeyboardZooming)
             zoomPos += ZoomDirection * Time.deltaTime * keyboardZoomingSensitivity;
 
@@ -253,7 +251,7 @@ public class CameraMovementScript : MonoBehaviour
             rig_Transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSpeed, Space.World);
 
         if (useMouseRotation && Input.GetKey(mouseRotationKey))
-            rig_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed*10.0f, Space.World);
+            rig_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed * 10.0f, Space.World);
 
     }
 

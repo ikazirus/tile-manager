@@ -2,9 +2,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public static class SaveHelper 
+public static class SaveHelper
 {
- 
+
     public static void SaveData()
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -18,7 +18,7 @@ public static class SaveHelper
 
     public static DataHelper LoadData()
     {
-        string path =  Application.persistentDataPath + 
+        string path = Application.persistentDataPath +
             "/data.kaz";
 
         if (File.Exists(path))

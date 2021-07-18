@@ -1,77 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
-    public Block block;
-    public GameObject initialPrefab;
-    public GameObject selectPrefab;
-    public BlockPrefabs[] blockPrefabs;
-
-    void Start()
-    {
-        
-
-    }
-
+    public BlockModel blockModel;
     void Update()
     {
-        AssignPrefab();
-        ChangePrefab();
+        BuildBlock();
     }
 
-    public void ChangePrefab()
+    private void BuildBlock()
     {
-        switch (block.rotation)
+        if (blockModel.roomType != RoomType.Empty)
         {
-            case BlockRotation.R_0:
-                //gameObject.transform.localRotation =  Quaternion.Euler(0, 0, 0);
-                break;
-            case BlockRotation.R_90:
-                gameObject.transform.localRotation =  Quaternion.Euler(0, 90, 0);
-                break;
-            case BlockRotation.R_180:
-                gameObject.transform.localRotation =  Quaternion.Euler(0, 180, 0);
-                break;
-            case BlockRotation.R_270:
-                gameObject.transform.localRotation =  Quaternion.Euler(0, 270, 0);
-                break;
-            default:
-                break;
-        }
+            switch (blockModel.blockType)
+            {
+                case BlockType.midFloor:
+                    break;
+                case BlockType.wall:
+                    blockModel.prefabs.wall.SetActive(true);
+                    break;
+                case BlockType.singleDoor:
+                    blockModel.prefabs.singleDoor.SetActive(true);
+                    break;
+                case BlockType.leftDoor:
+                    blockModel.prefabs.wall.SetActive(true);
+                    break;
+                case BlockType.midDoor:
+                    blockModel.prefabs.midDoor.SetActive(true);
+                    break;
+                case BlockType.rightDoor:
+                    blockModel.prefabs.rightDoor.SetActive(true);
+                    break;
+                case BlockType.corner:
+                    blockModel.prefabs.corner.SetActive(true);
+                    break;
+                case BlockType.cornerDoor:
+                    blockModel.prefabs.cornerDoor.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
 
-        gameObject.transform.SetParent(transform);
+            switch (blockModel.rotation)
+            {
+                case Rotation.R_0:
+                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    break;
+                case Rotation.R_90:
+                    gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    break;
+                case Rotation.R_180:
+                    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    break;
+                case Rotation.R_270:
+                    gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
-    public void AssignPrefab()
+    private void reset()
     {
-        switch (block.room)
-        {
-            case Room.Unavailable:
-
-                break;
-            case Room.Available:
-                break;
-            case Room.Construction:
-                break;
-            case Room.Empty:
-                break;
-            case Room.Store:
-                break;
-            case Room.Armory:
-                break;
-            case Room.Corridor:
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void CheckAdjacents()
-    {
-
+        blockModel.prefabs.wall.SetActive(false);
+        blockModel.prefabs.corner.SetActive(false);
+        blockModel.prefabs.singleDoor.SetActive(false);
+        blockModel.prefabs.leftDoor.SetActive(false);
+        blockModel.prefabs.rightDoor.SetActive(false);
+        blockModel.prefabs.midDoor.SetActive(false);
+        blockModel.prefabs.cornerDoor.SetActive(false);
     }
 
 }
-

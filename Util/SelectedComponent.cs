@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectedComponent : MonoBehaviour
 {
-    
+
     void Start()
     {
         GameObject obj = transform.parent.gameObject;

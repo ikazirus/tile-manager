@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalSelection : MonoBehaviour
 {
-   
+
     SelectedDictionary selected_table;
     RaycastHit hit;
 
@@ -29,7 +27,7 @@ public class GlobalSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+
         selected_table = GetComponent<SelectedDictionary>();
         dragSelect = false;
     }
